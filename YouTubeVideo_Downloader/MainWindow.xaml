@@ -1,0 +1,130 @@
+﻿<Window x:Class="YouTubeVideo_Downloader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YouTubeVideo_Downloader"
+        mc:Ignorable="d"
+        Title="YouTube Downloader" Height="450" Width="264"
+        AllowsTransparency="True" Background="Transparent" WindowStyle="None" ResizeMode="NoResize" Icon="/youtube-logo-png-46031.png">
+    <Grid>
+        <Border Width="auto" Height="auto" BorderThickness="2"
+                CornerRadius="30,0,30,0">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#FF353535" Offset="0.49"></GradientStop>
+                            <GradientStop Color="#FF292929" Offset="0.5"></GradientStop>
+                        </GradientStopCollection>
+                    </GradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Text="YouTube Downloader" Padding="5" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" Background="#00000000" Foreground="#FFB7B7B7" Margin="16,0,0,0"></TextBlock>
+                <Grid Grid.Row="1" Background="#FF2D2D2D">
+                    <TextBlock x:Name="top_tb" VerticalAlignment="Top" FontSize="18" 
+                               Foreground="White" HorizontalAlignment="Center" Margin="0,40,0,0" Text="Download Link" FontFamily="Verdana"/>
+                    <TextBox x:Name="link_tb" HorizontalAlignment="Center" Margin="0,69,0,0" TextWrapping="WrapWithOverflow" VerticalAlignment="Top" Width="198" BorderBrush="#FF404040" Foreground="White" Background="{x:Null}" ToolTip="put link here"/>
+                    <Button x:Name="download_button" Content="DOWNLOAD" HorizontalAlignment="Center" Margin="0,92,0,0" VerticalAlignment="Top" Width="198" Background="#FF353535" BorderBrush="#FF404040" Click="download_button_Click" Foreground="White" MouseEnter="download_button_MouseEnter" MouseLeave="download_button_MouseLeave">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Grid x:Name="grid" Background="#FFB7B7B7">
+                                                <Rectangle x:Name="Fon" Height="Auto" Margin="0" VerticalAlignment="Stretch" Fill="Black" Stroke="Black" Opacity="100"/>
+                                                <Rectangle x:Name="ImageFon" Margin="0" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}"/>
+                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                            </Grid>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsPressed" Value="True">
+                                                    <Setter Property="Fill" TargetName="Fon" Value="Black"/>
+                                                    <Setter Property="Opacity" TargetName="Fon" Value="1"/>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Opacity" TargetName="Fon" Value="1"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                        <Button.Effect>
+                            <DropShadowEffect Opacity="0.48" ShadowDepth="3" RenderingBias="Quality" Direction="300" BlurRadius="14"/>
+                        </Button.Effect>
+                    </Button>
+                    <TextBlock VerticalAlignment="Top" 
+                        Foreground="White" HorizontalAlignment="Center" Margin="0,132,0,0" Text="Title"/>
+                    <TextBlock VerticalAlignment="Top" 
+                        Foreground="White" HorizontalAlignment="Center" Margin="0,229,0,0" Text="Duration"/>
+                    <TextBlock VerticalAlignment="Top" 
+                        Foreground="White" HorizontalAlignment="Center" Margin="0,273,0,0" Text="Author"/>
+                    <TextBlock x:Name="title_tb" HorizontalAlignment="Center" Margin="0,153,0,0" VerticalAlignment="Top" Width="172" Foreground="White" Background="#FF3E3E3E" FontStyle="Italic" FontWeight="Bold" TextWrapping="Wrap">
+                        <TextBlock.Effect>
+                            <DropShadowEffect Opacity="0.335" ShadowDepth="4" BlurRadius="10"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                    <TextBlock x:Name="duration_tb" HorizontalAlignment="Center" Margin="0,249,0,0" VerticalAlignment="Top" Width="136" Foreground="White" Background="#FF3E3E3E">
+                        <TextBlock.Effect>
+                            <DropShadowEffect Opacity="0.335" ShadowDepth="4" BlurRadius="10"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                    <TextBlock x:Name="author_tb" HorizontalAlignment="Center" Margin="0,293,0,0" VerticalAlignment="Top" Width="136" Foreground="White" Background="#FF3E3E3E">
+                        <TextBlock.Effect>
+                            <DropShadowEffect Opacity="0.335" ShadowDepth="4" BlurRadius="10"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                    <TextBox x:Name="pathLink_tb" HorizontalAlignment="Left" Margin="10,366,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="217" BorderBrush="#FF404040" Foreground="White" Background="{x:Null}" SelectionBrush="#FF5B1515" KeyDown="pathLink_tb_KeyDown"/>
+                    <Ellipse x:Name="EnterEllipse" HorizontalAlignment="Left" Height="18" Margin="232,366,0,0" VerticalAlignment="Top" Width="18" Fill="#FF770000" MouseLeftButtonDown="EnterEllipse_MouseLeftButtonDown" MouseEnter="EnterEllipse_MouseEnter" MouseLeave="EnterEllipse_MouseLeave"/>
+                    <TextBlock VerticalAlignment="Top" Foreground="#FF7B7B7B" HorizontalAlignment="Left" Margin="10,345,0,0" Text="Download folder"/>
+                </Grid>
+                <TextBlock Text="@Progress Software" Padding="5" Grid.Row="2" HorizontalAlignment="Center" Foreground="#FF585858">
+                    <TextBlock.Effect>
+                        <DropShadowEffect/>
+                    </TextBlock.Effect></TextBlock>
+                <Button x:Name="exit_button" HorizontalAlignment="Left" Margin="229,0,0,0" VerticalAlignment="Center" Width="23" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="exit_button_Click" MouseEnter="exit_button_MouseEnter" MouseLeave="exit_button_MouseLeave">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Grid x:Name="grid" Background="{x:Null}">
+                                            <Rectangle x:Name="Fon" Height="Auto" Margin="0" VerticalAlignment="Stretch" Fill="{x:Null}" Stroke="{x:Null}" Opacity="0"/>
+                                            <Rectangle x:Name="ImageFon" Margin="0" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}"/>
+                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter Property="Fill" TargetName="Fon" Value="#00000000"/>
+                                                <Setter Property="Opacity" TargetName="Fon" Value="1"/>
+                                            </Trigger>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Opacity" TargetName="Fon" Value="1"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                    <Ellipse x:Name="ellipse" Height="18" Stroke="#FF8A1111" Width="18" Fill="#FFB11E1E"/>
+                </Button>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
+    
+    
