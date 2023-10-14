@@ -14,6 +14,7 @@ using System.Windows.Threading;
 using YoutubeExplode;
 using YoutubeExplode.Videos;
 using YoutubeExplode.Videos.Streams;
+using YouTubeVideo_Downloader.Core;
 
 namespace YouTubeVideo_Downloader
 {
@@ -102,17 +103,6 @@ namespace YouTubeVideo_Downloader
             }             
         }
 
-        private void pathLink_tb_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (pathLink_tb.Text.Length > 0 && e.Key == Key.Enter)
-            {
-                EnterEllipse.Fill = new SolidColorBrush(Color.FromArgb(255, 64, 119, 0));
-
-                downloadPath = pathLink_tb.Text;
-            }
-            else MessageBox.Show("Put the directory path here");
-        }
-
         private void download_button_MouseEnter(object sender, MouseEventArgs e)
         {
             var button = sender as Button;
@@ -158,13 +148,11 @@ namespace YouTubeVideo_Downloader
         #region Enter Ellipse
         private void EnterEllipse_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (pathLink_tb.Text.Length > 0)
-            {
-                EnterEllipse.Fill = new SolidColorBrush(Color.FromArgb(255, 64, 119, 0));
+            string path = Dialog.OpenDialog();
 
-                downloadPath = pathLink_tb.Text;
-            }
-            else MessageBox.Show("Put the directory path here");
+            pathLinkTb.Text = path;
+
+            downloadPath = path;
         }
 
         private void EnterEllipse_MouseEnter(object sender, MouseEventArgs e)

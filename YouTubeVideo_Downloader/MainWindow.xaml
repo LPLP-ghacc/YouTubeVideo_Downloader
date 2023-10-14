@@ -84,9 +84,9 @@
                             <DropShadowEffect Opacity="0.335" ShadowDepth="4" BlurRadius="10"/>
                         </TextBlock.Effect>
                     </TextBlock>
-                    <TextBox x:Name="pathLink_tb" HorizontalAlignment="Left" Margin="10,366,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="217" BorderBrush="#FF404040" Foreground="White" Background="{x:Null}" SelectionBrush="#FF5B1515" KeyDown="pathLink_tb_KeyDown"/>
                     <Ellipse x:Name="EnterEllipse" HorizontalAlignment="Left" Height="18" Margin="232,366,0,0" VerticalAlignment="Top" Width="18" Fill="#FF770000" MouseLeftButtonDown="EnterEllipse_MouseLeftButtonDown" MouseEnter="EnterEllipse_MouseEnter" MouseLeave="EnterEllipse_MouseLeave"/>
                     <TextBlock VerticalAlignment="Top" Foreground="#FF7B7B7B" HorizontalAlignment="Left" Margin="10,345,0,0" Text="Download folder"/>
+                    <TextBlock x:Name="pathLinkTb" HorizontalAlignment="Left" Margin="10,366,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="217" Background="#FF262626" Foreground="#FFABABAB" Text="хуй"/>
                 </Grid>
                 <TextBlock Text="@Progress Software" Padding="5" Grid.Row="2" HorizontalAlignment="Center" Foreground="#FF585858">
                     <TextBlock.Effect>
